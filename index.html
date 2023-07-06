@@ -13,26 +13,40 @@
         <script>
             const output = document.getElementById('mobileDeviceOutput');
 
+            async function getMedia(constraints) {
+                let stream = null;
+
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia(constraints);
+                } catch(err) {
+                    const error = document.createElement('li');
+                    error.textContent = err.name + ': ' + err.message;
+                }
+            }
+
+            getMedia({
+                video: true
+            });
+
             navigator.mediaDevices.enumerateDevices()
-            .then((devices) => {
-                devices.forEach((device) => {
-                    const identifier = document.createElement('li');
-                    
-                    
-                    identifier.textContent = `${device.kind}: ${device.label} id = ${device.deviceId}`;
-                    output.appendChild(identifier);
+                .then((devices) => {
+                    devices.forEach((device) => {
+                        const identifier = document.createElement('li');
 
-                    if (device.getCapabilities) {
-                        const info = document.createElement('li');
+                        identifier.textContent = `${device.kind}: ${device.label} id = ${device.deviceId}`;
+                        output.appendChild(identifier);
 
-                        console.error(device);
-                        console.error(device.getCapabilities());
+                        if (device.getCapabilities) {
+                            const info = document.createElement('li');
 
-                        info.textContent = JSON.stringify(device.getCapabilities());
-                        output.appendChild(info);
-                    }
+                            console.error(device);
+                            console.error(device.getCapabilities());
+
+                            info.textContent = JSON.stringify(device.getCapabilities());
+                            output.appendChild(info);
+                        }
+                    });
                 });
-            })
         </script>
     </footer>
 </html>
