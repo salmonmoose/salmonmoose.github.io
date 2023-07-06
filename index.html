@@ -26,6 +26,7 @@
                         const info = document.createElement('li');
 
                         console.error(device);
+                        console.error(device.getCapabilities());
 
                         info.textContent = JSON.stringify(device.getCapabilities());
                         output.appendChild(info);
