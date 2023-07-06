@@ -24,7 +24,7 @@
                 }
             }
 
-            getMedia({
+            await getMedia({
                 video: true
             });
 
@@ -44,6 +44,9 @@
 
                             info.textContent = JSON.stringify(device.getCapabilities());
                             output.appendChild(info);
+                        } else {
+                            const error = document.createElement('li');
+                            error.textContent = 'Get Capabilities is not supported';
                         }
                     });
                 });
