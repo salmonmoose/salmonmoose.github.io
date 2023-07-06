@@ -25,10 +25,8 @@
                     if (device.getCapabilities) {
                         const info = document.createElement('li');
 
-                        device.getCapabilities().then((capabilities) => {
-                            info.textContent = JSON.stringify(capabilities);
-                            output.appendChild(info);
-                        });
+                        info.textContent = JSON.stringify(device.getCapabilities());
+                        output.appendChild(info);
                     }
                 });
             })
