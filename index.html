@@ -33,13 +33,14 @@
                     devices.forEach((device) => {
                         const identifier = document.createElement('li');
 
+                        console.error(device);
+
                         identifier.textContent = `${device.kind}: ${device.label} id = ${device.deviceId}`;
                         output.appendChild(identifier);
 
                         if (device.getCapabilities) {
                             const info = document.createElement('li');
 
-                            console.error(device);
                             console.error(device.getCapabilities());
 
                             info.textContent = JSON.stringify(device.getCapabilities());
