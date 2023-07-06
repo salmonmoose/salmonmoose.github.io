@@ -25,11 +25,11 @@
                 }
             }
 
-            await getMedia({
+            getMedia({
                 video: true
-            });
-
-            navigator.mediaDevices.enumerateDevices()
+            })
+            .then(() => {
+                navigator.mediaDevices.enumerateDevices()
                 .then((devices) => {
                     devices.forEach((device) => {
                         const identifier = document.createElement('li');
@@ -53,6 +53,7 @@
                         }
                     });
                 });
+            });
         </script>
     </footer>
 </html>
