@@ -21,6 +21,7 @@
                 } catch(err) {
                     const error = document.createElement('li');
                     error.textContent = err.name + ': ' + err.message;
+                    output.appendChild(error);
                 }
             }
 
@@ -48,6 +49,7 @@
                         } else {
                             const error = document.createElement('li');
                             error.textContent = 'Get Capabilities is not supported';
+                            output.appendChild(error);
                         }
                     });
                 });
