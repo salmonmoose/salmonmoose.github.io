@@ -1,9 +1,35 @@
 <html>
-    <header>
+    <head>
         <title>Home</title>
         <link rel="stylesheet" href="css/style.css">
-    </header>
+        <script>
+            const output = document.getElementById('mobileDeviceOutput');
+
+            navigator.mediaDevices.enumerateDevices()
+            .then((devices) => {
+                devices.forEach((device) => {
+                    const identifier = document.createElement('li');
+                    
+                    
+                    identifier.textContent = `${device.kind}: ${device.label} id = ${device.deviceId}`;
+                    output.appendChild(identifier);
+
+                    if (device.getCapabilities) {
+                        const info = document.createElement('li');
+
+                        device.getCapabilities().then((capabilities) => {
+                            info.textContent = JSON.stringify(capabilities);
+                            output.appendChild(info);
+                        });
+                    }
+                });
+            })
+        </script>
+    </head>
     <body>
         <h1>Mobile tester</h1>
+        <ul id="mobileDeviceOutput">
+
+        </ul>
     </body>
 </html>
