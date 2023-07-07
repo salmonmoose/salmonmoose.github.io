@@ -34,8 +34,9 @@
             }
 
             getMedia({
-                video: true,
-                facingMode: 'environment'
+                video: {
+                    facingMode: 'environment',
+                }
             })
             .then(() => {
                 const availableConstraints = window.navigator.mediaDevices.getSupportedConstraints();
