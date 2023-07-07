@@ -18,6 +18,11 @@
 
                 try {
                     stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                    const settings = document.createElement('li');
+                    settings.textContent = JSON.stringify(stream.getSettings());
+                    output.appendChild(settings);
+
                 } catch(err) {
                     const error = document.createElement('li');
                     error.textContent = err.name + ': ' + err.message;
