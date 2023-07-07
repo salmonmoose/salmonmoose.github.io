@@ -29,6 +29,14 @@
                 video: true
             })
             .then(() => {
+                const availableConstraints = window.navigator.mediaDevices.getSupportedConstraints();
+
+                console.error(availableConstraints);
+
+                const constraints = document.createElement('li');
+                constraints.textContent = JSON.stringify(availableConstraints);
+                output.appendChild(constraints);
+
                 navigator.mediaDevices.enumerateDevices()
                 .then((devices) => {
                     devices.forEach((device) => {
