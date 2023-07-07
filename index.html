@@ -20,7 +20,10 @@
                     stream = await navigator.mediaDevices.getUserMedia(constraints);
 
                     const settings = document.createElement('li');
-                    settings.textContent = JSON.stringify(stream.getVideoTracks()[0].getConstraints());
+                    settings.textContent = JSON.stringify([
+                        stream.getVideoTracks()[0].getSettings(),
+                        stream.getVideoTracks()[0].getCapabilities()
+                    ]);
                     output.appendChild(settings);
 
                 } catch(err) {
