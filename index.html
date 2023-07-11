@@ -5,6 +5,7 @@
     </head>
     <body>
         <h1>Mobile tester</h1>
+        <video id="video" autoplay></video>
         <ul id="mobileDeviceOutput">
 
         </ul>
@@ -17,7 +18,13 @@
                 let stream = null;
 
                 try {
+                    const video = document.getElementById('video');
                     stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                    video.srcObject = stream;
+                    video.onloadedmetadata = () => {
+                        video.play();
+                    }
 
                     const settings = document.createElement('li');
                     settings.textContent = JSON.stringify([
